@@ -77,20 +77,6 @@
 <script>
 navigator.geolocation.getCurrentPosition(test2);
 
-function test2(position) {
-    var geo_text = "緯度:" + position.coords.latitude + "\n";
-    geo_text += "経度:" + position.coords.longitude + "\n";
-
-    var date = new Date(position.timestamp);
-    geo_text += "取得時刻:" + date.toLocaleString() + "\n";
-
-    // alert(geo_text);
-</script>
-{% endblock %}
-
-
-avigator.geolocation.getCurrentPosition(test2);
-
 
 function test2(position) {
 
@@ -106,3 +92,9 @@ function test2(position) {
     location.href = location.href + '?lat=' + position.coords.latitude + '&lng=' +  position.coords.longitude;
 
 }
+</script>
+{% endblock %}
+
+
+
+
