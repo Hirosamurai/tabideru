@@ -37,7 +37,7 @@ class Restaurantidview(generic.TemplateView):
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
 
-        #print(self.kwargs['restaurantid'])
+        print(self.kwargs['restaurantid'])
         #次にhotpepperに問い合わせる
         # 楽天api, hotpapper apiが入る
         REQUEST_URL = 'http://webservice.recruit.co.jp/hotpepper/gourmet/v1/'
@@ -46,22 +46,19 @@ class Restaurantidview(generic.TemplateView):
         #ヒント:getパラメータは使わない　押した店の情報を受け取るには
         params = {
             'format': 'json',
-            'id': self.kwargs['restaurantid'],
+            'keyword': 'id',
             'key': APP_ID
         }
 
         hotpepperAPIresponse = requests.get(REQUEST_URL, params)
         hotpepperresponse = hotpepperAPIresponse.json()
-
-
+        context['hotpepper'] = hotpepperresponse['results']
         import pprint
-        #pprint.pprint(hotpepperresponse)
+        pprint.pprint(hotpepperresponse)
 
 
         #hotpepperからのresponseをcontext['shop']にいれる
-
-        context['shop'] = hotpepperresponse['results']['shop'][0]
-        pprint.pprint(context['shop'])
+        context['shop']= {'name':'aaa'}
         return context
 
 class LoginView(auth_views.LoginView):

@@ -1,0 +1,70 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}日記詳細 | Private Diary{% endblock %}
+
+{% block active_diary_list %}active{% endblock %}
+
+
+{% block contents %}
+<div class="container my-div-style">
+    <div class="row">
+        <div class="col-3">
+            <strong>レストラン</strong>
+        </div>
+        <div class="col-9">
+            {{ shop.name }}
+        </div>
+    </div>
+
+
+    <hr>
+
+    <div class="row">
+        <div class="col-3">
+            <strong>住所</strong>
+        </div>
+        <div class="col-9">
+            {{ shop.address }}
+        </div>
+    </div>
+
+    <hr>
+
+    <div class="row">
+        <div class="col-3">
+            <strong>写真</strong>
+        </div>
+        <div class="col-3">
+
+            <img src="{{ shop.photo.pc.l }}" />
+
+        </div>
+
+
+    </div>
+
+    <hr>
+
+    <div class="row">
+        <div class="col-3">
+            <strong>営業時間</strong>
+        </div>
+        <div class="col-9">
+            {{ shop.open }}
+        </div>
+    </div>
+
+    <hr>
+
+    <div class="row">
+        <div class="col-3">
+            <strong>定休日</strong>
+        </div>
+        <div class="col-9">
+            {{ shop.close }}
+        </div>
+    </div>
+
+</div>
+{% endblock %}

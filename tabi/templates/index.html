@@ -2,16 +2,21 @@
 
 {% load static %}
 
-{% block title %}Web上にあなた専用の日記ページを保存できるサービス　｜　Private Diary{% endblock %}
+{% block title %}旅出る　｜　Tabideru{% endblock %}
 
 {% block header %}
 
 <header class="masthead text-center text-white">
     <div class="masthead-content">
         <div class="container">
-            <h1 class="masthead-heading mb-0">Private Diary</h1>
-            <h2 class="masthead-subheading mb-0">あなた専用の日記保存サービス</h2>
-            <a class="btn btn-primary btn-xl rounded-pill mt-5" href="">LOG IN</a>
+            <h1 class="masthead-heading mb-0">TABIDERU</h1>
+            <h2 class="masthead-subheading mb-0">どこに行く？</h2>
+            <form>
+            <div class="input-group mb-3 input-group-lg">
+  <input type="text" name="search" value="{{ request.GET.search }}" class="form-control" placeholder="どこへ行く？" aria-label="Recipient's username" aria-describedby="button-addon2">
+  <button class="btn btn-info" type="submit" id="button-addon2">検索</button>
+</div>
+                </form>
         </div>
     </div>
     <div class="bg-circle-1 bg-circle"></div>
@@ -22,52 +27,29 @@
 {% endblock %}
 
 {% block contents %}
- <!-- Content section 1-->
-        <section>
-            <div class="container">
-                <div class="row align-items-center">
-                    <div class="col-lg-6 order-lg-2">
-                        <div class="p-5"><img class="img-fluid rounded-circle" src="{% static 'assets/img/01.jpg' %}" alt="..." /></div>
-                    </div>
-                    <div class="col-lg-6 order-lg-1">
-                        <div class="p-5">
-                            <h2 class="display-4">Web Diary</h2>
-                            <p>Web上で作成/編集/削除ができる日記</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-        <!-- Content section 2-->
-        <section>
-            <div class="container">
-                <div class="row align-items-center">
-                    <div class="col-lg-6">
-                        <div class="p-5"><img class="img-fluid rounded-circle" src="{% static 'assets/img/02.jpg' %}" alt="..." /></div>
-                    </div>
-                    <div class="col-lg-6">
-                        <div class="p-5">
-                            <h2 class="display-4">Save Your Diary</h2>
-                            <p>あなたの日記をwebに保存</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-        <!-- Content section 3-->
-        <section>
-            <div class="container">
-                <div class="row align-items-center">
-                    <div class="col-lg-6 order-lg-2">
-                        <div class="p-5"><img class="img-fluid rounded-circle" src="{% static 'assets/img/03.jpg' %}" alt="..." /></div>
-                    </div>
-                    <div class="col-lg-6 order-lg-1">
-                        <div class="p-5">
-                            <h2 class="display-4">Membership System</h2>
-                            <p>会員制のweb日記サービス</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
+
+<div class=" mt-3 container">
+{% for shop in hotpepper.shop %}
+
+<div class="card mb-3" >
+  <div class="row g-0">
+    <div class="col-md-4">
+      <img src="{{ shop.photo.pc.l}}" class="img-fluid rounded-start" alt="...">
+    </div>
+    <div class="col-md-8">
+      <div class="card-body">
+
+          <a href="{% url 'tabi:restaurantid' shop.id %}"><h5 class="card-title">{{ shop.name }}</h5></a>
+        <p class="card-text">{{ shop.address }}</p>
+          <p class="card-text">{{ shop.budget.average }}</p>
+          <p class="card-text">{{ shop.genre.catch }}</p>
+        <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
+      </div>
+    </div>
+  </div>
+</div>
+
+{% endfor %}
+</div>
+
 {% endblock %}
